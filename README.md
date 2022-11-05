@@ -1,5 +1,8 @@
 # ActiveRecordQuery
 
+![example workflow](https://github.com/marcosfelipe/activerecord-query/actions/workflows/ruby.yml/badge.svg)
+
+
 ActiveRecordQuery is a DSL buit on top of [ActiveRecord](https://github.com/rails/rails/tree/main/activerecord) 
 to help you write complex SQL queries 
 in the cleanest way possible. The lib provides a base class to 
