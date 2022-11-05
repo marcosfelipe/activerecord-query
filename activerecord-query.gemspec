@@ -5,10 +5,10 @@ require_relative "lib/active_record_query/version"
 Gem::Specification.new do |spec|
   spec.name = "activerecord-query"
   spec.version = ActiveRecordQuery::VERSION
-  spec.authors = ["marcos"]
+  spec.authors = ["Marcos Felipe"]
   spec.email = ["marcosfelipesilva54@gmail.com"]
   spec.summary = "Small DSL for query build with Active Record."
-  spec.description = "The DSL provides a nice and clean way to write a Model query better than model scopes."
+  spec.description = "The DSL provides a nice and clean way to write ActiveRecord queries better than model scopes."
   spec.homepage = "https://github.com/marcosfelipe/activerecord-query"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
