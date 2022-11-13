@@ -7,8 +7,8 @@ module ActiveRecordQuery
         @resource = resource
       end
 
-      def method_missing(m, *args, &block)
-        Column.new(Arel::Table.new(resource), m)
+      def method_missing(method_name, *_args, &block)
+        Column.new(Arel::Table.new(resource), method_name)
       end
 
       private
