@@ -91,7 +91,31 @@ RSpec.describe ActiveRecordQuery do
       %i[user address state].each { |resource| expect(query.respond_to?(resource)).to be_truthy }
     end
 
-    it 'left joins'
+    context 'left outer join' do
+      let!(:query) { Class.new(described_class::Base) { from User } }
+
+      it 'left outer joins another resource' do
+        query.left_outer_join :posts
+        expect(query.execute.to_sql).to eq(User.left_outer_joins(:posts).to_sql)
+      end
+
+      it 'left outer joins multiple resource' do
+        query.left_outer_join :posts
+        query.left_outer_join :contacts
+        expect(query.execute.to_sql).to eq(User.left_outer_joins(:posts, :contacts).to_sql)
+      end
+
+      it 'defines a resource from the joined table' do
+        query.left_outer_join :posts
+        expect(query.respond_to?(:posts)).to be_truthy
+      end
+
+      it 'executes where with the joined table' do
+        query.left_outer_join :posts
+        query.where(query.posts.title == 'test')
+        expect(query.execute.to_sql).to eq(User.left_outer_joins(:posts).where(Post.arel_table.grouping(Post.arel_table[:title].eq('test'))).to_sql)
+      end
+    end
   end
 
   describe 'group by' do
