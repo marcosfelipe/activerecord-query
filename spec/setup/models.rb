@@ -30,12 +30,20 @@ ActiveRecord::Base.connection.create_table :states, force: true do |t|
   t.timestamps
 end
 
+ActiveRecord::Base.connection.create_table :contacts, force: true do |t|
+  t.string :description
+  t.string :phone
+  t.references :user
+  t.timestamps
+end
+
 class Author < ActiveRecord::Base
   has_many :posts
 end unless defined?(Author)
 
 class User < ActiveRecord::Base
   has_many :posts
+  has_many :contacts
   belongs_to :address
 end unless defined?(User)
 
@@ -50,3 +58,7 @@ end unless defined?(Address)
 
 class State < ActiveRecord::Base
 end unless defined?(State)
+
+class Contact < ActiveRecord::Base
+  belongs_to :user
+end unless defined?(Contact)
