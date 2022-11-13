@@ -273,7 +273,7 @@ class PostQuery < ActiveRecordQuery::Base
 end
 ```
 
-#### Joins
+#### Inner Join
 The `join` method defines one/many relationships with the current resource (`from` state).
 The following example has a Post and Author models, the way we define a join is the same as 
 defining a `joins` on activerecord (check the active record querying doc.).
@@ -297,6 +297,33 @@ class PostQuery < ActiveRecordQuery::Base
   
   # the author helper will be available
   where author.name == 'John'
+end
+```
+
+#### Left Outer Join
+The `left_outer_join` method defines one/many relationships with the current resource (`from` state).
+The following example has a Post and Author models, the way we define a left outer join is the same as
+defining a `left_outer_joins` on activerecord (check the active record querying doc.).
+Right after defined the join, a new method will be available for retrieve the columns
+from the new resource, the `posts` method on the example bellow. Every relationship listed in
+the args will be converted to a method with the same name.
+```ruby
+# models
+class Post < ActiveRecord::Base
+  belongs_to :author
+end
+
+class Author < ActiveRecord::Base
+  has_many :posts
+end
+
+# query
+class PostQuery < ActiveRecordQuery::Base
+  from Author
+  left_outer_join :posts
+  
+  # the `posts` helper will be available
+  where posts.title == 'A title'
 end
 ```
 
