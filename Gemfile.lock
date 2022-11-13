@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    activerecord-query (0.1.1)
+    activerecord-query (0.2.0)
       activerecord (>= 4.0, < 8.0)
       activesupport (>= 4.0, < 8.0)
 
