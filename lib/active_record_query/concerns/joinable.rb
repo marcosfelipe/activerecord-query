@@ -1,7 +1,9 @@
 module ActiveRecordQuery
+  # The module defines the join and left_outer_join macros.
   module Joinable
     extend ActiveSupport::Concern
 
+    # The object holds the columns called from a joined resource.
     class JoinedResource
       def initialize(resource)
         @resource = resource
